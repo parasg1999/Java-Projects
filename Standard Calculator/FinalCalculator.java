@@ -11,7 +11,7 @@ public class FinalCalculator implements ActionListener
 {
 	int decimalCount = 0, i, afterDecimal;
 	double liveNumber1 = 0, liveNumber2 = 0;
-	String numberString = "0", resultString = "0", historyString = "", lastButtonPressed = "", decimalNumber;
+	String numberString = "0", resultString = "0", historyString = " ", lastButtonPressed = "", decimalNumber;
 	GridBagLayout gridBagLayout;	
 	GridBagConstraints gridBagConstraints;
 	JFrame frame;
@@ -30,17 +30,17 @@ public class FinalCalculator implements ActionListener
 		mainPanel = new JPanel();
 		displayPanel = new JPanel();
 		
-		historyLabel = new JLabel();
+		historyLabel = new JLabel(historyString);
 		historyLabel.setFont(new Font("Ariel", Font.BOLD, 15));
 		historyLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		numberLabel = new JLabel(numberString);
-		numberLabel.setFont(new Font("Ariel", Font.BOLD, 30));
+		numberLabel.setFont(new Font("Ariel", Font.BOLD, 35));
 		numberLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		numberLabel.setMaximumSize(new Dimension(20, 20));
 		numberLabel.setMinimumSize(new Dimension(20, 20));
-		displayPanel.setLayout(new BorderLayout());
-		displayPanel.add(historyLabel, BorderLayout.NORTH);
-		displayPanel.add(numberLabel, BorderLayout.CENTER);
+//		displayPanel.setLayout(new BorderLayout());
+//		displayPanel.add(historyLabel, BorderLayout.NORTH);
+//		displayPanel.add(numberLabel, BorderLayout.CENTER);
 		
 		addButton = new JButton("+");
 		addButton.setFont(operatorButtonFont);
@@ -175,17 +175,23 @@ public class FinalCalculator implements ActionListener
 		
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 0;
-		gridBagConstraints.weighty = 2;
+		gridBagConstraints.weighty = 1;
+		gridBagConstraints.gridheight = 1;
 		gridBagConstraints.gridwidth = 4;
-		gridBagConstraints.insets = new Insets(1, 1, 1, 1);
 		gridBagConstraints.fill = GridBagConstraints.BOTH;
-		mainPanel.add(displayPanel, gridBagConstraints);
+		gridBagConstraints.insets = new Insets(1, 2, 1, 1);
+		mainPanel.add(historyLabel, gridBagConstraints);
+		
+		gridBagConstraints.gridy = 1;
+		mainPanel.add(numberLabel, gridBagConstraints);
+		
+		gridBagConstraints.insets = new Insets(1, 1, 1, 1);
 		
 		gridBagConstraints.gridwidth = 1;
 		gridBagConstraints.weightx = 1;
 		gridBagConstraints.weighty = 1;
 		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 1;
+		gridBagConstraints.gridy = 2;
 		mainPanel.add(percentageButton, gridBagConstraints);
 		gridBagConstraints.gridx = 1;
 		mainPanel.add(sqrtButton, gridBagConstraints);
@@ -194,7 +200,7 @@ public class FinalCalculator implements ActionListener
 		gridBagConstraints.gridx = 3;
 		mainPanel.add(invertButton, gridBagConstraints);
 		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 2;
+		gridBagConstraints.gridy = 3;
 		mainPanel.add(ceButton, gridBagConstraints);
 		gridBagConstraints.gridx = 1;
 		mainPanel.add(cButton, gridBagConstraints);
@@ -203,7 +209,7 @@ public class FinalCalculator implements ActionListener
 		gridBagConstraints.gridx = 3;
 		mainPanel.add(divideButton, gridBagConstraints);
 		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 3;
+		gridBagConstraints.gridy = 4;
 		mainPanel.add(numberSevenButton, gridBagConstraints);
 		gridBagConstraints.gridx = 1;
 		mainPanel.add(numberEightButton, gridBagConstraints);
@@ -212,7 +218,7 @@ public class FinalCalculator implements ActionListener
 		gridBagConstraints.gridx = 3;
 		mainPanel.add(multiplyButton, gridBagConstraints);
 		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 4;
+		gridBagConstraints.gridy = 5;
 		mainPanel.add(numberFourButton, gridBagConstraints);
 		gridBagConstraints.gridx = 1;
 		mainPanel.add(numberFiveButton, gridBagConstraints);
@@ -221,7 +227,7 @@ public class FinalCalculator implements ActionListener
 		gridBagConstraints.gridx = 3;
 		mainPanel.add(subtractButton, gridBagConstraints);
 		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 5;
+		gridBagConstraints.gridy = 6;
 		mainPanel.add(numberOneButton, gridBagConstraints);
 		gridBagConstraints.gridx = 1;
 		mainPanel.add(numberTwoButton, gridBagConstraints);
@@ -230,7 +236,7 @@ public class FinalCalculator implements ActionListener
 		gridBagConstraints.gridx = 3;
 		mainPanel.add(addButton, gridBagConstraints);
 		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 6;
+		gridBagConstraints.gridy = 7;
 		mainPanel.add(signChangeButton, gridBagConstraints);
 		gridBagConstraints.gridx = 1;
 		mainPanel.add(numberZeroButton, gridBagConstraints);
@@ -239,8 +245,8 @@ public class FinalCalculator implements ActionListener
 		gridBagConstraints.gridx = 3;
 		mainPanel.add(equalButton, gridBagConstraints);
 		
-		displayPanel.setBackground(new Color(230, 230, 230));
-		displayPanel.setBorder(new EmptyBorder(5,0,2,4));
+//		displayPanel.setBackground(new Color(230, 230, 230));
+//		displayPanel.setBorder(new EmptyBorder(5,0,2,4));
 		mainPanel.setBackground(new Color(230, 230, 230));
 		mainPanel.setBorder(new EmptyBorder(2,2,1,2));
 		
@@ -531,7 +537,7 @@ public class FinalCalculator implements ActionListener
 		{
 			lastButtonPressed = "c";
 			numberString = "0";
-			historyString = "";
+			historyString = " ";
 			resultString = "0";
 			liveNumber1 = liveNumber2 = 0;
 			historyLabel.setText(historyString);
@@ -640,7 +646,7 @@ public class FinalCalculator implements ActionListener
 		{
 			lastButtonPressed = "=";
 			lastOperator = "";
-			historyString = "";
+			historyString = " ";
 			historyLabel.setText(historyString);
 			numberLabel.setText(resultString);
 			numberString = "0";
